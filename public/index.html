@@ -35,15 +35,19 @@
         </nav>
     </header>
 
-    <div class="hero">
-        <h1>Personal Budget</h1>
-        <h2>A personal-budget management app</h2>
-    </div>
+    <!-- This is a Semantic HTML Change : Added header -->
+    <header>
+        <div class="hero">
+            <h1>Personal Budget</h1>
+            <h2>Personal Finances management app</h2>
+        </div>
+    </header>
+
     <!-- This is an SEO Change : changed all non title tags from h1 to h2 -->
     <main class="center" id="main">
 
         <section class="page-area">
-
+            <!-- This is a Semantic HTML Change : Added article -->
             <article>
                 <h2>Stay on track</h2>
                 <p>
@@ -92,27 +96,29 @@
                 </p>
             </article>
 
-            <article>
-                <h2>Results</h2>
-                <p>
-                    People who stick to a financial plan, budgeting every expense, get out of debt faster!
-                    Also, they to live happier lives... since they expend without guilt or fear...
-                    because they know it is all good and accounted for.
-                </p>
-            </article>
             <!-- This is a Semantic HTML Change : Added <section> -->
             <section>
                 <article>
                     <h2>Chart</h2>
-                    <!-- This is an A11y Change : Added <figure> and <figcaption> for better semantic meaning -->
+                    <!-- This is an A11y Change : Added <figure> and <figcaption> for better meaning -->
                     <figure>
                         <figcaption>Chart showing budget distribution</figcaption>
                         <!-- This is an A11y Change : Added Added empty alt attribute for decorative chart   -->
                         <canvas id="myChart" width="400" height="400" alt=""></canvas>
                     </figure>
                 </article>
-                <section>
-                </section>
+
+            </section>
+
+            <article>
+                <h2>Understanding the chart</h2>
+                <p>
+                    This section provides you better understanding of what your financial numbers look like.
+                </p>
+            </article>
+
+
+        </section>
 
     </main>
 
