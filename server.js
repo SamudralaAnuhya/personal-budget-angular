@@ -28,8 +28,9 @@ const budget = {
   ],
 };
 
+const budgetData = require("./budget-data.json")
 app.get("/budget", (req, res) => {
-  res.json(budget);
+  res.json(budgetData);
 });
 
 app.listen(port, () => {
