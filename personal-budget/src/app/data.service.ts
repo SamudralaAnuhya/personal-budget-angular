@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BudgetService {
+export class DataService {
 
   private apiUrl = 'http://localhost:3000/budget';
   // D3js Chart Data
@@ -34,7 +34,7 @@ export class BudgetService {
   constructor(private http: HttpClient) { }
 
   getBudgetData(): Observable<any> {
-    return this.http.get(this.apiUrl);
+    return this.http.get<any>(this.apiUrl);
   }
 
   populateDataSource(data: any): void {
