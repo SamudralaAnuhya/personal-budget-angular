@@ -6,6 +6,7 @@ import * as d3 from 'd3';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
+import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 
 interface BudgetData {
   myBudget: { title: string; budget: number }[];
@@ -14,7 +15,7 @@ interface BudgetData {
 @Component({
   selector: 'pb-homepage',
   standalone: true,
-  imports: [ArticleComponent],
+  imports: [ArticleComponent, BreadcrumbsComponent],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })
@@ -48,7 +49,7 @@ export class HomepageComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    this.http.get('http://localhost:3000/budget')
+    this.dataService.getBudgetData()
       .subscribe((res: any) => {
         for (let i = 0; i < res.myBudget.length; i++) {
           this.dataSource.datasets[0].data.push(res.myBudget[i].budget);
@@ -61,8 +62,6 @@ export class HomepageComponent implements OnInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.createChart();
-      // this.createD3DonutChart(this.dataSource);
       this.fetchBudgetData();
     }, 1000);
   }
@@ -78,20 +77,19 @@ export class HomepageComponent implements OnInit {
   }
 
   fetchBudgetData(): void {
-    this.dataService.getBudgetData() // invoke dataservice to fetch budget data
+    var dataCondition = !this.budgetData || !this.budgetData.myBudget || this.budgetData.myBudget.length === 0;
+    if (dataCondition) { // check
+      this.dataService.getBudgetData() // invoke dataservice to fetch budget data
       .subscribe(data => {
         this.budgetData = data;
         if (isPlatformBrowser(this.platformId)) {
           this.generateChart(); // fetch chart
         }
       });
+    }
   }
 
   generateChart(): void {
-    if (!this.budgetData || !this.budgetData.myBudget || this.budgetData.myBudget.length === 0) {
-      console.error('Budget Data is empty.');
-      return;
-    }
 
     const width = 800;
     const height = 500;
