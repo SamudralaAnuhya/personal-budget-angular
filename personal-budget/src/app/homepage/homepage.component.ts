@@ -83,6 +83,7 @@ export class HomepageComponent implements OnInit {
       .subscribe(data => {
         this.budgetData = data;
         if (isPlatformBrowser(this.platformId)) {
+          this.createChart();
           this.generateChart(); // fetch chart
         }
       });
